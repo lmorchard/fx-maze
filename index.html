@@ -5,10 +5,28 @@
     <title>fx-maze</title>
     <style type="text/css">
       * { margin: 0; padding: 0 }
-      body { margin: 0; background: #000; color: #fff }
-      body #loading { display: hidden; }
-      body.loading #loading { display: block; z-index: 100 }
-      canvas { display: block }
+      body { margin: 0; background: #000; color: #fff; width: 100%; font-family: sans-serif; }
+      body.loading #loading { display: block; z-index: 100; position: absolute; visibility: hidden }
+      h1 { margin-bottom: 1em; }
+      p { margin-bottom: 0.5em; }
+      #headerImage { width: 100%; }
+      #explanation { width: 100%; }
+      #theStartButton { text-align: center; color: aqua; font-size: large; visibility: hidden }
+      #theResumeButton { text-align: center; color: aqua; font-size: large; visibility: hidden }
+      .listItem { font-weight:bold ;}
+      .boxed {
+        display: block;
+        border: 1em snow solid;
+        background-color: snow;
+        color: black;
+        margin: 1em;
+        text-align: left;
+        padding: 1em;
+      }
+      .intro { text-align: center; }
+      .method { border: 1em darkgray solid; width: 80%; padding: 1.5em; margin-bottom: 0.5em; }
+      .methods-section { column-count: 2; column-width: 40%; -moz-column-count: 2; -webkit-column-count: 2;}
+      canvas { display: block; visibility: hidden; position: absolute }
       #debugContainer {
         display: none;
         z-index: 100;
@@ -21,9 +39,103 @@
       #debug { width: 100%; }
     </style>
   </head>
-  <body class="loading">
+  <body id="loading">
     <canvas id="viewport"></canvas>
-    <div id="loading"><p>Loading...</p></div>
+    <div id="explanation">
+      <img id="headerImage" src="mazes/Firefox.path-forward.png">
+      <div class="intro boxed">
+        <h1>We're a globally distributed community</h1>
+        <p>A couple times per year, we gather together somewhere on planet to talk, plan and support our mission. </p>
+        <p>It's a long flight to the December 2016 goal of the Big Island of Hawaii. We need a way to pass the time as we travel. </p>
+        <p>In 2015 on the way to Orlando Florida, <a href="http://twobraids.com">K Lars Lohn</a> offered a maze in the
+          shape of the Firefox logo. As an image on a screen, however, there was no easy way to solve it.  This year,
+          in cahoots with Les Orchard, it's a Web app.</p>
+      </div>
+      <div id="theStartButton">START THE GAME</div>
+      <!-- <div id="theResumeButton">RESUME THE GAME</div> -->
+      <div class="howto boxed extra-to-hide">
+        <h1>How to Play</h1>
+        <p>The objective is to move your player from the maze start point through to the end. Once at the end,
+        you've made it to Hawaii.</p>
+        <h2>Breadcrumbs</h2>
+        <p>As you move through the maze, you'll notice numbers appear each time you get to a branch in the path. These
+        are breadcrumb5s.  Just pass them by, but if you get to a dead end, you can jump backwards through the numbers,
+        until you figure out where you went wrong.  To see how to jump back, see the method below that corresponds the
+        platform on which you're playing the game.</p>
+        <h2>Clues</h2>
+        <p>This maze is huge and could take days to solve, so we've arranged to give some clues on the way. The key is
+        color of your cursor.  When you stray from the correct path, your cursor will slowly turn pink.  If it completely
+        turns red, you've been off the path for a long time.  Either reverse course until the cursor turns white again,
+        or use the breadcrumbs feature to leap back to a previous decision point.</p>
+        <h2>Zoom</h2>
+          <p>There are two viewing modes: manual and auto zoom. The game starts in manual mode where you control the
+          level of the zoom yourself.  See the method outlined below.  Auto zoom controls the zoom for you: zoomed in
+          when your cursor is moving; zoomed out when not moving.</p>
+        <div class="methods-section extra-to-hide">
+          <div class="method extra-to-hide"><h2>On a phone or touch tablet</h2>
+            <ul>
+              <li><span class="listItem">single finger touch</span>: moves the player cursor.  You're not dragging the player cursor, but more like coaxing
+                it.  The player cursor will try to move toward your finger, but is cronstrained by the walls of the maze.  You're
+                leading it in the direction that you want it to go.  Some people report that using a stylus makes movement
+                easier.</li>
+              <li><span class="listItem">double finger tap</span>: move back through the numbered breadcrumbs.  Each tap is one leap.</li>
+              <li><span class="listItem">triple finger tap</span>: toggle between Manual Zoom and Automatic Zoom</li>
+              <li><span class="listItem">pinch to zoom</span>: when in Manual Zoom mode, the standard pinch to zoom method will move your perspective in
+                and out</li>
+              <!-- <li><span class="listItem">two finger swipe left</span>: jump back to this screen</li> -->
+            </ul>
+          </div>
+          <div class="method extra-to-hide"><h2>With a Game Controller</h2>
+            <p>Game controllers vary in their layout and functionality, you may have to experiment with you're to get
+              to know the mapping of the buttons</p>
+            <ul>
+              <li><span class="listItem">arrow buttons</span>: these will move the game cursor in the direction indicated</li>
+              <li><span class="listItem">joy stick</span>: this is another way to move the game cursor</li>
+              <li><span class="listItem">back button / Blue button / X button</span>: move back through the numbered breadcrumbs</li>
+              <li><span class="listItem">yellow button / Y button</span>: toggle between Manual Zoom and Automatic Zoom</li>
+              <li><span class="listItem">green button / A button</span>: when in Manual Zoom mode, this button zooms the view closer</li>
+              <li><span class="listItem">red button / B button</span>: when in Manual Zoom mode, this button zoom the view outward</li>
+            </ul>
+          </div>
+          <div class="method extra-to-hide"><h2>With a Mouse</h2>
+            <ul>
+              <li><span class="listItem">left button</span>: moving the mouse with the left button pressed is how you move through the maze.  You're not
+                dragging the cursor around, you're coaxing it instead. The game cursor will try to move toward your mouse
+                cursor, but the game cursor is constrained by the maze pathways.  You lead the game cursor with your mouse
+                cursor.  The distance between the game cursor and the mouse cursor is directly proportional to the speed
+                that the game cursor moves.</li>
+              <li><span class="listItem">right button</span>: this is the mouse method of moving back through the numbered breadcrumbs. Each click is
+                a jump back.</li>
+              <li><span class="listItem">scroll wheel</span>: when in manual zoom mode, scrolling the mouse wheel zoom in and out.</li>
+              <li><span class="listItem">middle button</span>: pressing the middle mouse button (usually the scroll wheel itself) toggles between
+                the Manual Zoom and Automatic Zoom</li>
+            </ul>
+          </div>
+          <div class="method extra-to-hide"><h2>With a Keyboard</h2>
+          <ul>
+            <li><span class="listItem">arrow keys</span>: will move the cursor in the indicated direction. They can be use in combination</li>
+            <li><span class="listItem">WASD</span>: these letter keys in an inverted-T shape work like the arrow keys</li>
+            <li><span class="listItem">backspace</span>: each press of this key will jump you back to latest breadcrumb decision point</li>
+            <li><span class="listItem">=/+</span>: this key (without regard to shift state) will zoom the display in closer</li>
+            <li><span class="listItem">-</span>: this key will zoom outward for a higher level view</li>
+            <li><span class="listItem">Z</span>: this toggles between the Manual Zoom and Auto Zoom modes</li>
+            <!-- <li><span class="listItem">TAB</span>: jump back to this screen to review the commands. You can resume the game from there.</li> -->
+          </ul>
+        </div>
+        </div>
+      </div>
+      <div class="knownissues boxed extra-to-hide">
+        <h1>Known Issues</h1>
+        <ul>
+          <li><span class="listItem">Firefox for Android</span>: poor performance on some devices.</li>
+        </ul>
+      </div>
+      <div class="codereference boxed extra-to-hide">
+        <h1>The Code</h1>
+        <p>The code can be found on Github at <a href="https://github.com/twobraids/fx-maze">https://github.com/twobraids/fx-maze</a>.
+        It's a hack.  Feel free to fork it and contribute.</p>
+      </div>
+    </div>
     <script src="index.js" type="text/javascript"></script>
   </body>
 </html>
