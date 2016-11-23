@@ -10,9 +10,11 @@
       h1 { margin-bottom: 1em; }
       p { margin-bottom: 0.5em; }
       #headerImage { width: 100%; }
-      #explanation { width: 100%; }
+      #explanation { display: block; position: absolute; width: 100%; }
+      #buttons { text-align: center; }
       #theStartButton { text-align: center; color: aqua; font-size: large; visibility: hidden }
-      #theResumeButton { text-align: center; color: aqua; font-size: large; visibility: hidden }
+      #theResumeButton { text-align: center; color: orange; font-size: large; visibility: hidden; dispaly: none }
+      #errors { text-align: center; color: red; font-size: large; visibility: hidden }
       .listItem { font-weight:bold ;}
       .boxed {
         display: block;
@@ -26,7 +28,11 @@
       .intro { text-align: center; }
       .method { border: 1em darkgray solid; width: 80%; padding: 1.5em; margin-bottom: 0.5em; }
       .methods-section { column-count: 2; column-width: 40%; -moz-column-count: 2; -webkit-column-count: 2;}
-      canvas { display: block; visibility: hidden; position: absolute }
+      #viewport {
+        display: block;
+        visibility: hidden;
+        position: absolute
+      }
       #debugContainer {
         display: none;
         z-index: 100;
@@ -44,27 +50,26 @@
     <div id="explanation">
       <img id="headerImage" src="mazes/Firefox.path-forward.png">
       <div class="intro boxed">
-        <h1>We're a globally distributed community</h1>
-        <p>A couple times per year, we gather together somewhere on planet to talk, plan and support our mission. </p>
+        <h1>Solve the Firefox Maze</h1>
+        <!-- <p>A couple times per year, we gather together somewhere on planet to talk, plan and support our mission. </p>
         <p>It's a long flight to the December 2016 goal of the Big Island of Hawaii. We need a way to pass the time as we travel. </p>
         <p>In 2015 on the way to Orlando Florida, <a href="http://twobraids.com">K Lars Lohn</a> offered a maze in the
           shape of the Firefox logo. As an image on a screen, however, there was no easy way to solve it.  This year,
-          in cahoots with Les Orchard, it's a Web app.</p>
+          in cahoots with Les Orchard, it's a Web app.</p> -->
       </div>
-      <div id="theStartButton">START THE GAME</div>
-      <!-- <div id="theResumeButton">RESUME THE GAME</div> -->
+      <p id="buttons"><span id="theStartButton">START NEW GAME</span> <span id="theResumeButton">RESUME THE GAME</span></p>
       <div class="howto boxed extra-to-hide">
         <h1>How to Play</h1>
         <p>The objective is to move your player from the maze start point through to the end. Once at the end,
         you've made it to Hawaii.</p>
         <h2>Breadcrumbs</h2>
         <p>As you move through the maze, you'll notice numbers appear each time you get to a branch in the path. These
-        are breadcrumb5s.  Just pass them by, but if you get to a dead end, you can jump backwards through the numbers,
-        until you figure out where you went wrong.  To see how to jump back, see the method below that corresponds the
-        platform on which you're playing the game.</p>
+        are breadcrumbs.  Just pass them by. If you get to a dead end, you can jump backwards through the numbers,
+        until you figure out where you went wrong.  To see how to jump back, see the method below that corresponds how
+        you are playing the game.</p>
         <h2>Clues</h2>
-        <p>This maze is huge and could take days to solve, so we've arranged to give some clues on the way. The key is
-        color of your cursor.  When you stray from the correct path, your cursor will slowly turn pink.  If it completely
+        <p>This maze is huge and could take days to solve, so your cursor can give you clues.  Watch its color.
+        When you stray from the correct path, your cursor will slowly turn pink.  If it completely
         turns red, you've been off the path for a long time.  Either reverse course until the cursor turns white again,
         or use the breadcrumbs feature to leap back to a previous decision point.</p>
         <h2>Zoom</h2>
@@ -82,7 +87,7 @@
               <li><span class="listItem">triple finger tap</span>: toggle between Manual Zoom and Automatic Zoom</li>
               <li><span class="listItem">pinch to zoom</span>: when in Manual Zoom mode, the standard pinch to zoom method will move your perspective in
                 and out</li>
-              <!-- <li><span class="listItem">two finger swipe left</span>: jump back to this screen</li> -->
+              <li><span class="listItem">two finger swipe left</span>: jump back to this screen, where you may resume or start over</li>
             </ul>
           </div>
           <div class="method extra-to-hide"><h2>With a Game Controller</h2>
@@ -91,10 +96,11 @@
             <ul>
               <li><span class="listItem">arrow buttons</span>: these will move the game cursor in the direction indicated</li>
               <li><span class="listItem">joy stick</span>: this is another way to move the game cursor</li>
-              <li><span class="listItem">back button / Blue button / X button</span>: move back through the numbered breadcrumbs</li>
+              <li><span class="listItem">blue button / X button</span>: move back through the numbered breadcrumbs</li>
               <li><span class="listItem">yellow button / Y button</span>: toggle between Manual Zoom and Automatic Zoom</li>
               <li><span class="listItem">green button / A button</span>: when in Manual Zoom mode, this button zooms the view closer</li>
               <li><span class="listItem">red button / B button</span>: when in Manual Zoom mode, this button zoom the view outward</li>
+              <li><span class="listItem">back button</span>: return to this screen, where you may resume or start over</li>
             </ul>
           </div>
           <div class="method extra-to-hide"><h2>With a Mouse</h2>
@@ -119,7 +125,7 @@
             <li><span class="listItem">=/+</span>: this key (without regard to shift state) will zoom the display in closer</li>
             <li><span class="listItem">-</span>: this key will zoom outward for a higher level view</li>
             <li><span class="listItem">Z</span>: this toggles between the Manual Zoom and Auto Zoom modes</li>
-            <!-- <li><span class="listItem">TAB</span>: jump back to this screen to review the commands. You can resume the game from there.</li> -->
+            <li><span class="listItem">P</span>: jump back to this screen, where you may resume or start over</li>
           </ul>
         </div>
         </div>
