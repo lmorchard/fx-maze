@@ -15,6 +15,7 @@
       #theStartButton { text-align: center; color: aqua; font-size: large; visibility: hidden }
       #theResumeButton { text-align: center; color: orange; font-size: large; visibility: hidden; display: none }
       #errors { text-align: center; color: red; font-size: large; visibility: hidden }
+      #warning { text-align: center; color: orange }
       .listItem { font-weight:bold ;}
       .boxed {
         display: block;
@@ -59,6 +60,7 @@
       </div>
       <p id="buttons"><span id="theStartButton">START NEW GAME</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="theResumeButton">RESUME THE GAME</span></p>
       <div class="howto boxed extra-to-hide">
+        <p id="warning">Android & iOS users - start the game with this page scrolled to the top - see <a href="#knownissues">known issues</a> below</p>
         <h1>How to Play</h1>
         <p>The objective is to move your player from the maze start point through to the end. Once at the end,
         you've made it to Hawaii.</p>
@@ -131,16 +133,19 @@
         </div>
         </div>
       </div>
-      <div class="knownissues boxed extra-to-hide">
+      <div id="knownissues" class="boxed extra-to-hide">
         <h1>Known Issues</h1>
         <ul>
           <li><span class="listItem">Firefox for Android</span>: poor performance on some devices.</li>
+          <li><span class="listItem">Firefox for Android & iOS</span>: if the game is started when the original page is
+          scrolled, the tab bar may reflexively strobe up and down through game play. <strong>Get around this</strong> by using a <em>two
+          finger left swipe</em> to pause the game, ensure the page is scrolled to the top, then hit the "Resume" button.</li>
         </ul>
       </div>
       <div class="codereference boxed extra-to-hide">
         <h1>The Code</h1>
-        <p>The code can be found on Github at <a href="https://github.com/twobraids/fx-maze">https://github.com/twobraids/fx-maze</a>.
-        It's a hack.  Feel free to fork it and contribute.</p>
+        <p>The code can be found on Github at <a href="https://github.com/twobraids/fx-maze">https://github.com/lmorchard/fx-maze</a>.
+        <strong><em>It's a disorganized hack.</em></strong>  Feel free to fork it and contribute.</p>
       </div>
     </div>
     <script src="index.js" type="text/javascript"></script>
