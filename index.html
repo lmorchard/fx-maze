@@ -12,8 +12,9 @@
       #headerImage { width: 100%; }
       #explanation { display: block; position: absolute; width: 100%; }
       #buttons { text-align: center; }
-      #theStartButton { text-align: center; color: aqua; font-size: large; visibility: hidden }
+      #theStartButton { text-align: center; color: aqua; font-size: large; visibility: hidden; display: none }
       #theResumeButton { text-align: center; color: orange; font-size: large; visibility: hidden; display: none }
+      #countdown { text-align: center; color: orange; font-size: large; visibility: hidden}
       #errors { text-align: center; color: red; font-size: large; visibility: hidden }
       #warning { text-align: center; color: orange }
       .listItem { font-weight:bold ;}
@@ -58,7 +59,7 @@
           shape of the Firefox logo. As an image on a screen, however, there was no easy way to solve it.  This year,
           in cahoots with <a href="http://lmorchard.com">Les Orchard</a>, it's a Web app.</p>
       </div>
-      <p id="buttons"><span id="theStartButton">START NEW GAME</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span id="theResumeButton">RESUME THE GAME</span></p>
+      <p id="buttons"><span id="theStartButton">START NEW GAME</span><span id="countdown"> </span><span id="theResumeButton">&nbsp;&nbsp;&nbsp;&nbsp;RESUME THE GAME</span></p>
       <div class="howto boxed extra-to-hide">
         <p id="warning">Android & iOS users - start the game with this page scrolled to the top - see <a href="#knownissues">known issues</a> below</p>
         <h1>How to Play</h1>
